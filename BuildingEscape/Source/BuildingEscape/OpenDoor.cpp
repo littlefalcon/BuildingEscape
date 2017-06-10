@@ -52,17 +52,13 @@ void UOpenDoor::OpenDoor() {
 	
 	// Set the door Rotation
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
-	UE_LOG(LogTemp, Warning, TEXT("Rotation Set to %s"), *Owner->GetActorRotation().ToString());
 	/*FRotator Owner = GetOwner()->GetActorRotation();
 	GetOwner()->SetActorRotation(FQuat(Owner.Roll, Owner.Pitch, Owner.Yaw + 10,0),ETeleportType::None);*/
 }
 
 void UOpenDoor::CloseDoor() {
 
-
 	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
-
-	UE_LOG(LogTemp, Warning, TEXT("Close Door Rot : %s"), *Owner->GetActorRotation().ToString());
 
 }
 
