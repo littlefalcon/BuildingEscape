@@ -57,7 +57,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	//Get player view point this tick
 
-
+	if (!PhysicsHandle) { return; } // return if PhysicsHandle is null
 	// if the physics handle is attached
 	if (PhysicsHandle->GrabbedComponent) {
 		//move the object that we're holding
@@ -110,6 +110,7 @@ void UGrabber::Grab() {
 	/// if we hit something then attach a physics handle
 
 	if (ActorHit) {
+		if (!PhysicsHandle) { return; } // return if PhysicsHandle is null
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			ComponentToGrab, 
 			NAME_None,// no bones needed
@@ -123,6 +124,7 @@ void UGrabber::Grab() {
 void UGrabber::Release() {
 	UE_LOG(LogTemp, Warning, TEXT("Grab Release"))
 		//TODO Release physic handle
+		if (!PhysicsHandle) { return; } // return if PhysicsHandle is null
 		PhysicsHandle->ReleaseComponent();
 }
 
