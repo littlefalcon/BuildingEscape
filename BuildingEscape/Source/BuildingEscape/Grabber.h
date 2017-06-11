@@ -30,5 +30,21 @@ private:
 		float Reach = 100.0f;
 
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
-	
+
+	UInputComponent* InputComponent = nullptr;
+
+	// Ray=cast and Grab what in reach
+	void Grab();
+
+	//Called when grab is released
+	void Release();
+
+	//Find (assumed) attached Physics Handle
+	void FindPhysicsHandleComponent();
+
+	//Setup (assumed) attached input component
+	void SetupInputComponent();
+
+	// Return hit for fisrt physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 };
