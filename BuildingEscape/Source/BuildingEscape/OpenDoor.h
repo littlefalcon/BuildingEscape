@@ -35,8 +35,7 @@ private:
 		AVolume* PressurePlate;
 	
 	UPROPERTY(EditAnywhere)
-		float DoorCloseDelay = 3.f;
-
+		float DoorCloseDelay = 1.f;
 		float LastDoorOpenTime;
 
 	AActor* Owner; // The Owning Door
