@@ -3,6 +3,7 @@
 #include "Grabber.h"
 #include "Engine.h"
 
+
 #define OUT
 
 // Sets default values for this component's properties
@@ -11,7 +12,6 @@ UGrabber::UGrabber()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
 	// ...
 }
 
@@ -21,8 +21,15 @@ void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
-	// ...
-	
+	///Look for attached Physics Handle
+	PhysicsHandle = GetOwner()->FindComponentByClass <UPhysicsHandleComponent>();
+	if (PhysicsHandle) {
+		// Physic handle is found;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s missing physics handle component"), *GetOwner()->GetName());
+	}
 }
 
 
@@ -39,10 +46,10 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		OUT PlayerViewPointRotation
 	);
 	///log out the test
-	UE_LOG(LogTemp, Warning, TEXT("Location : %s Position : %s"),
+	/*UE_LOG(LogTemp, Warning, TEXT("Location : %s Position : %s"),
 		*PlayerViewPointLocation.ToString(),
 		*PlayerViewPointRotation.ToString()
-	)
+	)*/
 
 	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector()* Reach;
 
